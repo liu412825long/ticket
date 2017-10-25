@@ -90,17 +90,8 @@
                   <th>篮球1</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="gradeX">
-                  <td>20171025</td>
-                  <td>23</td>
-                  <td>12</td>
-                  <td>11</td>
-                  <td>32</td>
-                  <td>02</td>
-                  <td>04</td>
-                  <td>08</td>
-                </tr>
+              <tbody id="tbody">
+               
               </tbody>
             </table>
           </div>
@@ -115,6 +106,37 @@
 </div>
 <!--end-Footer-part-->
 <script src="<%=path %>/source/js/jquery.min.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url:"<%=path%>/queryAll",
+		type:"GET",
+		dataType:"json",
+		success:function(data){
+			for(var i=0;i<data.length;i++){
+			flushData(data[i]);
+			}
+		}
+	});
+	
+});
+
+function flushData(row){
+	var tr=" <tr class='gradeX'>"+
+	"<td>"+row.period+"</td>"+
+	"<td>"+row.red1+"</td>"+
+	"<td>"+row.red2+"</td>"+
+	"<td>"+row.red3+"</td>"+
+	"<td>"+row.red4+"</td>"+
+	"<td>"+row.red5+"</td>"+
+	"<td>"+row.red6+"</td>"+
+	"<td>"+row.blue1+"</td>"+
+	"</tr>";
+	$("#tbody").append(tr);
+}
+
+</script>
+
 <script src="<%=path %>/source/js/jquery.ui.custom.js"></script> 
 <script src="<%=path %>/source/js/bootstrap.min.js"></script> 
 <script src="<%=path %>/source/js/jquery.uniform.js"></script> 
