@@ -1,5 +1,7 @@
 package com.dragon.ticket.domain;
 
+import com.dragon.ticket.enums.CodeEnum;
+
 public class BaseResult<T> {
 	
 	private String code;
@@ -7,6 +9,12 @@ public class BaseResult<T> {
 	private String message;
 	
 	private T data;
+	
+	public BaseResult(CodeEnum message,T data) {
+		this.code=message.getCode();
+		this.message=message.getMessage();
+		this.data=data;
+	}
 	
 	public BaseResult(String code, String message, T data) {
 		super();
