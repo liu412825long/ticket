@@ -15,7 +15,7 @@
     
     <!-- 一些资源文件不进行spring mvc管理 -->
      <mvc:annotation-driven /> 
-	<mvc:resources location="/source/images/" mapping="/source/images/**"/> 
+	 <mvc:resources location="/source/images/" mapping="/source/images/**"/> 
  	<mvc:resources location="/source/css/" mapping="/source/css/**"/> 
 	<mvc:resources location="/source/js/" mapping="/source/js/**"/>
 	<mvc:resources location="/source/img/" mapping="/source/img/**"/>
