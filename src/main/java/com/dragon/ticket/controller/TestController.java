@@ -16,26 +16,9 @@ import com.dragon.ticket.service.TicketsService;
 @Controller
 public class TestController {
 	
-	private Logger logger=Logger.getLogger(getClass());
-	
-	@Autowired
-	private TicketsService ticketsService;
-	
 	@RequestMapping(value="index")
 	public String index() {
 		return "index";
-	}
-	@RequestMapping(value="/ticketList")
-	public String ticketList() {
-		return "ticketList";
-	}
-	
-	@RequestMapping(value="/queryAll")
-	@ResponseBody
-	public List<Tickets> queryAll(HttpServletRequest request){
-		logger.info("获取请求地址："+request.getRemoteAddr());
-		logger.info("获取请求主机："+request.getRemoteHost());
-		return ticketsService.queryAll();
 	}
 
 }
