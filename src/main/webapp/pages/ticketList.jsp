@@ -1,115 +1,293 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String path=request.getContextPath(); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Matrix Admin</title>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="<%=path %>/source/css/bootstrap.min.css" />
-<link rel="stylesheet" href="<%=path %>/source/css/bootstrap-responsive.min.css" />
-<link rel="stylesheet" href="<%=path %>/source/css/uniform.css" />
-<link rel="stylesheet" href="<%=path %>/source/css/select2.css" />
-<link rel="stylesheet" href="<%=path %>/source/css/matrix-style.css" />
-<link rel="stylesheet" href="<%=path %>/source/css/matrix-media.css" />
-<link href="font-awesome/<%=path %>/source/css/font-awesome.css" rel="stylesheet" />
-<!-- <link href='http://fonts.useso.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'> -->
+    <title>Tables | Tables</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="${path}/source/images/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="${path}/source/images/icons/favicon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${path}/source/images/icons/favicon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${path}/source/images/icons/favicon-114x114.png">
+    <!--Loading bootstrap css-->
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/jquery-ui-1.10.4.custom.min.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/animate.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/all.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/main.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/style-responsive.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/zabuto_calendar.min.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/pace.css">
+    <link type="text/css" rel="stylesheet" href="${path}/source/styles/jquery.news-ticker.css">
 </head>
 <body>
-
-<!--Header-part-->
-<div id="header">
-  <h1><a href="dashboard.html">Matrix Admin</a></h1>
-</div>
-<!--close-Header-part--> 
-
-<!--top-Header-menu-->
-<div id="user-nav" class="navbar navbar-inverse">
-  <ul class="nav">
-    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-        <li class="divider"></li>
-        <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
-        <li class="divider"></li>
-        <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
-      </ul>
-    </li>
-    <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> new message</a></li>
-        <li class="divider"></li>
-        <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> inbox</a></li>
-        <li class="divider"></li>
-        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
-        <li class="divider"></li>
-        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
-      </ul>
-    </li>
-    <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
-  </ul>
-</div>
-
-<!--start-top-serch-->
-<div id="search">
-  <input type="text" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div>
-<!--close-top-serch--> 
-
-<!--sidebar-menu-->
-
-<div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-th"></i>Tables</a>
-  <ul>
-    <li><a href="index.html"><i class="icon icon-home"></i> <span>主页</span></a> </li>
-    <li  class="active"> <a href="<%=path%>/ticketList"><i class="icon icon-signal"></i> <span>列表</span></a> </li>
-  </ul>
-</div>
-<div id="content">
-  <div class="container-fluid">
-    <hr>
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Data table</h5>
-          </div>
-          <div class="widget-content nopadding">
-            <table class="table table-bordered data-table">
-              <thead>
-                <tr>
-                  <th>彩票期数</th>
-                  <th>红球1</th>
-                  <th>红球2</th>
-                  <th>红球3</th>
-                  <th>红球4</th>
-                  <th>红球5</th>
-                  <th>红球6</th>
-                  <th>篮球1</th>
-                </tr>
-              </thead>
-              <tbody id="tbody">
-               
-              </tbody>
-            </table>
-          </div>
+    <div>
+        <!--BEGIN THEME SETTING-->
+        <div id="theme-setting">
+            <a href="#" data-toggle="dropdown" data-step="1" data-intro="&lt;b&gt;Many styles&lt;/b&gt; and &lt;b&gt;colors&lt;/b&gt; be created for you. Let choose one and enjoy it!"
+                data-position="left" class="btn-theme-setting"><i class="fa fa-cog"></i></a>
+            <div class="content-theme-setting">
+                <select id="list-style" class="form-control">
+                    <option value="style1">Flat Squared style</option>
+                    <option value="style2">Flat Rounded style</option>
+                    <option value="style3" selected="selected">Flat Border style</option>
+                </select>
+            </div>
         </div>
-      </div>
+        <!--END THEME SETTING-->
+        <!--BEGIN BACK TO TOP-->
+        <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+        <!--END BACK TO TOP-->
+        <!--BEGIN TOPBAR-->
+        <div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">KAdmin</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
+            <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+                
+                <form id="topbar-search" action="" method="" class="hidden-sm hidden-xs">
+                    <div class="input-icon right text-white"><a href="#"><i class="fa fa-search"></i></a><input type="text" placeholder="Search here..." class="form-control text-white"/></div>
+                </form>
+                <ul class="nav navbar navbar-top-links navbar-right mbn">
+                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
+                        
+                    </li>
+                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
+                        
+                    </li>
+                    <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
+                        
+                    </li>
+                    <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="${path}/source/images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">Robert John</span>&nbsp;<span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-user pull-right">
+                            <li><a href="#"><i class="fa fa-user"></i>My Profile</a></li>
+                            <li><a href="#"><i class="fa fa-calendar"></i>My Calendar</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i>My Inbox<span class="badge badge-danger">3</span></a></li>
+                            <li><a href="#"><i class="fa fa-tasks"></i>My Tasks<span class="badge badge-success">7</span></a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="fa fa-lock"></i>Lock Screen</a></li>
+                            <li><a href="Login.html"><i class="fa fa-key"></i>Log Out</a></li>
+                        </ul>
+                    </li>
+                    <li id="topbar-chat" class="hidden-xs"><a href="javascript:void(0)" data-step="4" data-intro="&lt;b&gt;Form chat&lt;/b&gt; keep you connecting with other coworker" data-position="left" class="btn-chat"><i class="fa fa-comments"></i><span class="badge badge-info">3</span></a></li>
+                </ul>
+            </div>
+        </nav>
+            <!--BEGIN MODAL CONFIG PORTLET-->
+            <div id="modal-config" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                                &times;</button>
+                            <h4 class="modal-title">
+                                Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend et nisl eget
+                                porta. Curabitur elementum sem molestie nisl varius, eget tempus odio molestie.
+                                Nunc vehicula sem arcu, eu pulvinar neque cursus ac. Aliquam ultricies lobortis
+                                magna et aliquam. Vestibulum egestas eu urna sed ultricies. Nullam pulvinar dolor
+                                vitae quam dictum condimentum. Integer a sodales elit, eu pulvinar leo. Nunc nec
+                                aliquam nisi, a mollis neque. Ut vel felis quis tellus hendrerit placerat. Vivamus
+                                vel nisl non magna feugiat dignissim sed ut nibh. Nulla elementum, est a pretium
+                                hendrerit, arcu risus luctus augue, mattis aliquet orci ligula eget massa. Sed ut
+                                ultricies felis.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" class="btn btn-default">
+                                Close</button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END MODAL CONFIG PORTLET-->
+        </div>
+        <!--END TOPBAR-->
+        <div id="wrapper">
+            <!--BEGIN SIDEBAR MENU-->
+            <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
+                data-position="right" class="navbar-default navbar-static-side">
+            <div class="sidebar-collapse menu-scroll">
+                <ul id="side-menu" class="nav">
+                     <div class="clearfix"></div>
+                    <li ><a href="${path}/index"><i class="fa fa-tachometer fa-fw">
+                    </i><span class="menu-title">Dashboard</span></a></li>
+                    <li class="active"><a href="${path}/ticketList"><i class="fa fa-th-list fa-fw">
+                    </i><span class="menu-title">Tables</span></a>
+                          
+                    </li>
+                    <li><a href="Layout.html"><i class="fa fa-desktop fa-fw">
+                    </i><span class="menu-title">Layouts</span></a>
+                       
+                    </li>
+                    <li><a href="UIElements.html"><i class="fa fa-send-o fa-fw">
+                    </i><span class="menu-title">UI Elements</span></a>
+                       
+                    </li>
+                    <li><a href="Forms.html"><i class="fa fa-edit fa-fw">
+                    </i><span class="menu-title">Forms</span></a>
+                      
+                    </li>
+                    
+                    <li><a href="DataGrid.html"><i class="fa fa-database fa-fw">
+                    </i><span class="menu-title">Data Grids</span></a>
+                      
+                    </li>
+                    <li><a href="Pages.html"><i class="fa fa-file-o fa-fw">
+                    </i><span class="menu-title">Pages</span></a>
+                       
+                    </li>
+                    <li><a href="Extras.html"><i class="fa fa-gift fa-fw">
+                    </i><span class="menu-title">Extras</span></a>
+                      
+                    </li>
+                    <li><a href="Dropdown.html"><i class="fa fa-sitemap fa-fw">
+                        <div class="icon-bg bg-dark"></div>
+                    </i><span class="menu-title">Multi-Level Dropdown</span></a>
+                      
+                    </li>
+                    <li><a href="Email.html"><i class="fa fa-envelope-o">
+                        <div class="icon-bg bg-primary"></div>
+                    </i><span class="menu-title">Email</span></a>
+                      
+                    </li>
+                    <li><a href="Charts.html"><i class="fa fa-bar-chart-o fa-fw">
+                        <div class="icon-bg bg-orange"></div>
+                    </i><span class="menu-title">Charts</span></a>
+                       
+                    </li>
+                    <li><a href="Animation.html"><i class="fa fa-slack fa-fw">
+                        <div class="icon-bg bg-green"></div>
+                    </i><span class="menu-title">Animations</span></a></li>
+                </ul>
+            </div>
+        </nav>
+          
+          
+            <div id="page-wrapper">
+                <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+                    <div class="page-header pull-left">
+                        <div class="page-title">
+                            Tables</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="hidden"><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="active">Tables</li>
+                    </ol>
+                    <div class="clearfix">
+                    </div>
+                </div>
+                <!--END TITLE & BREADCRUMB PAGE-->
+                <!--BEGIN CONTENT-->
+                <div class="page-content">
+                    <div id="tab-general">
+                        <div class="row mbl">
+                            <div class="col-lg-12">
+                                
+                                            <div class="col-md-12">
+                                                <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
+                                                </div>
+                                            </div>
+                                
+                            </div>
+
+                            <div class="col-lg-12">
+                            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">彩票列表</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>期数</th>
+                                        <th>红球1</th>
+                                        <th>红球2</th>
+                                        <th>红球3</th>
+                                        <th>红球4</th>
+                                        <th>红球5</th>
+                                        <th>红球6</th>
+                                        <th>蓝球</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--END CONTENT-->
+                <!--BEGIN FOOTER-->
+                <div id="footer">
+                    <div class="copyright">
+                        <a href="#">2014 © KAdmin Responsive Multi-Purpose Template</a></div>
+                </div>
+                <!--END FOOTER-->
+            </div>
+            <!--END PAGE WRAPPER-->
+        </div>
     </div>
-  </div>
-</div>
-<!--Footer-part-->
-<div class="row-fluid">
-  <div id="footer" class="span12"> 2013 &copy; Matrix Admin. More Templates <a href="http://h2design.taobao.com/" target="_blank">氢设计</a></div>
-</div>
-<!--end-Footer-part-->
-<script src="<%=path %>/source/js/jquery.min.js"></script> 
+    <script src="${path}/source/script/jquery-1.10.2.min.js"></script>
+    <script src="${path}/source/script/jquery-migrate-1.2.1.min.js"></script>
+    <script src="${path}/source/script/jquery-ui.js"></script>
+    <script src="${path}/source/script/bootstrap.min.js"></script>
+    <script src="${path}/source/script/bootstrap-hover-dropdown.js"></script>
+    <script src="${path}/source/script/html5shiv.js"></script>
+    <script src="${path}/source/script/respond.min.js"></script>
+    <script src="${path}/source/script/jquery.metisMenu.js"></script>
+    <script src="${path}/source/script/jquery.slimscroll.js"></script>
+    <script src="${path}/source/script/jquery.cookie.js"></script>
+    <script src="${path}/source/script/icheck.min.js"></script>
+    <script src="${path}/source/script/custom.min.js"></script>
+    <script src="${path}/source/script/jquery.news-ticker.js"></script>
+    <script src="${path}/source/script/jquery.menu.js"></script>
+    <script src="${path}/source/script/pace.min.js"></script>
+    <script src="${path}/source/script/holder.js"></script>
+    <script src="${path}/source/script/responsive-tabs.js"></script>
+    <script src="${path}/source/script/jquery.flot.js"></script>
+    <script src="${path}/source/script/jquery.flot.categories.js"></script>
+    <script src="${path}/source/script/jquery.flot.pie.js"></script>
+    <script src="${path}/source/script/jquery.flot.tooltip.js"></script>
+    <script src="${path}/source/script/jquery.flot.resize.js"></script>
+    <script src="${path}/source/script/jquery.flot.fillbetween.js"></script>
+    <script src="${path}/source/script/jquery.flot.stack.js"></script>
+    <script src="${path}/source/script/jquery.flot.spline.js"></script>
+    <script src="${path}/source/script/zabuto_calendar.min.js"></script>
+    <script src="${path}/source/script/index.js"></script>
+    <!--LOADING SCRIPTS FOR CHARTS-->
+    <script src="${path}/source/script/highcharts.js"></script>
+    <script src="${path}/source/script/data.js"></script>
+    <script src="${path}/source/script/drilldown.js"></script>
+    <script src="${path}/source/script/exporting.js"></script>
+    <script src="${path}/source/script/highcharts-more.js"></script>
+    <script src="${path}/source/script/charts-highchart-pie.js"></script>
+    <script src="${path}/source/script/charts-highchart-more.js"></script>
+    <!--CORE JAVASCRIPT-->
+    <script src="${path}/source/script/main.js"></script>
 <script type="text/javascript">
 $(function(){
 	$.ajax({
-		url:"<%=path%>/queryAll",
+		url:"${path}/queryAll",
 		type:"GET",
 		dataType:"json",
 		success:function(data){
@@ -122,7 +300,7 @@ $(function(){
 });
 
 function flushData(row){
-	var tr=" <tr class='gradeX'>"+
+	var tr=" <tr>"+
 	"<td>"+row.period+"</td>"+
 	"<td>"+row.red1+"</td>"+
 	"<td>"+row.red2+"</td>"+
@@ -136,13 +314,5 @@ function flushData(row){
 }
 
 </script>
-
-<script src="<%=path %>/source/js/jquery.ui.custom.js"></script> 
-<script src="<%=path %>/source/js/bootstrap.min.js"></script> 
-<script src="<%=path %>/source/js/jquery.uniform.js"></script> 
-<script src="<%=path %>/source/js/select2.min.js"></script> 
-<script src="<%=path %>/source/js/jquery.dataTables.min.js"></script> 
-<script src="<%=path %>/source/js/matrix.js"></script> 
-<script src="<%=path %>/source/js/matrix.tables.js"></script>
 </body>
 </html>

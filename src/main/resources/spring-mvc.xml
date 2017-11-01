@@ -14,11 +14,12 @@
     <context:component-scan base-package="com.dragon.ticket.*"/>  
     
     <!-- 一些资源文件不进行spring mvc管理 -->
-     <mvc:annotation-driven /> 
-	 <mvc:resources location="/source/images/" mapping="/source/images/**"/> 
- 	<mvc:resources location="/source/css/" mapping="/source/css/**"/> 
-	<mvc:resources location="/source/js/" mapping="/source/js/**"/>
-	<mvc:resources location="/source/img/" mapping="/source/img/**"/>
+    <mvc:annotation-driven /> 
+	<!-- <mvc:resources location="/source/*" mapping="/source/**"/>  -->
+	<mvc:resources location="/source/images/" mapping="/source/images/**"/> 
+ 	<mvc:resources location="/source/styles/" mapping="/source/styles/**"/> 
+	<mvc:resources location="/source/script/" mapping="/source/script/**"/>
+	<mvc:resources location="/source/fonts/" mapping="/source/fonts/**"/>
   
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->  
     <bean id="mappingJacksonHttpMessageConverter"  
@@ -30,7 +31,7 @@
         </property>  
     </bean>  
     <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->  
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
         <property name="messageConverters">  
             <list>  
                 <ref bean="mappingJacksonHttpMessageConverter"/> <!-- JSON转换器 -->  
