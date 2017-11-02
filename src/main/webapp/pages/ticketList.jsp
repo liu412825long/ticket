@@ -316,8 +316,7 @@ $(function(){
 	 $("#pageFoot ul li").click(function(){
 		 removeAllActiveClass();
 		var clickNum=$(this).children("a").html();
-		alert(clickNum==2);
-		$(this).addClass('active');
+		alert(clickNum);
 		//flushPageBar(clickNum,4);
 	});
 });
@@ -351,7 +350,6 @@ function flushPageBar(currentPage,pageCount){
 	if(currentPage==pageCount){
 		next="<li class='disabled'><a href='javascript:void(0)'>&raquo;</a></li>";
 	}
-	//$("#pageFoot ul li").remove();
 	$("#pageFoot ul").append(pre);
 	$("#pageFoot ul").append(createPageBar(currentPage,pageCount));
 	$("#pageFoot ul").append(next);
@@ -360,11 +358,15 @@ function flushPageBar(currentPage,pageCount){
 function createPageBar(currentPage,pageCount){
 	for(var i=0;i<pageCount;i++){
 		if(currentPage==(i+1)){
-		$("#pageFoot ul").append("<li><a href='javascript:void(0)'>"+(i+1)+"</a></li>");
+		$("#pageFoot ul").append("<li class='active'><a href='javascript:void(0)' onclick='getCurrentPage(this);'>"+(i+1)+"</a></li>");
 		}else{
-		$("#pageFoot ul").append("<li ><a href='javascript:void(0)'>"+(i+1)+"</a></li>");
+		$("#pageFoot ul").append("<li ><a href='javascript:void(0)' onclick='getCurrentPage(this);'>"+(i+1)+"</a></li>");
 		}
 	}
+}
+
+function getCurrentPage(){
+	alert("aaa");
 }
 </script>
 </body>
