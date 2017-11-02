@@ -227,7 +227,22 @@
                                     <tbody id="tbody">
                                     </tbody>
                                 </table>
+                                
+                                <div class="text-right" id="pageFoot" >
+                                            <ul class="pagination mtm mbm">
+                                                <!-- <li><a href="#">&laquo;</a></li>
+                                                <li><a href="#">1</a></li>
+                                                <li><a href="#">2</a></li>
+                                                <li><a href="#">3</a></li>
+                                                <li><a href="#">4</a></li>
+                                                <li class="active"><a href="#">5</a></li>
+                                                <li class="disabled"><a href="#">&raquo;</a></li> -->
+                                            </ul>
+                                        </div>
                             </div>
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -297,7 +312,21 @@ $(function(){
 		}
 	});
 	
+	flushPageBar(1,4);
+	 $("#pageFoot ul li").click(function(){
+		 removeAllActiveClass();
+		var clickNum=$(this).children("a").html();
+		alert(clickNum==2);
+		$(this).addClass('active');
+		//flushPageBar(clickNum,4);
+	});
 });
+
+function removeAllActiveClass(){
+	$("#pageFoot ul li").each(function(){
+		$(this).removeClass('active');
+	});
+}
 
 function flushData(row){
 	var tr=" <tr>"+
@@ -313,6 +342,30 @@ function flushData(row){
 	$("#tbody").append(tr);
 }
 
+function flushPageBar(currentPage,pageCount){
+	var pre="<li><a href='javascript:void(0)'>&laquo;</a></li>";
+	var next="<li><a href='javascript:void(0)'>&raquo;</a></li>";
+	if(currentPage==1){
+		pre="<li class='disabled'><a href='javascript:void(0)'>&laquo;</a></li>";
+	}
+	if(currentPage==pageCount){
+		next="<li class='disabled'><a href='javascript:void(0)'>&raquo;</a></li>";
+	}
+	//$("#pageFoot ul li").remove();
+	$("#pageFoot ul").append(pre);
+	$("#pageFoot ul").append(createPageBar(currentPage,pageCount));
+	$("#pageFoot ul").append(next);
+}
+
+function createPageBar(currentPage,pageCount){
+	for(var i=0;i<pageCount;i++){
+		if(currentPage==(i+1)){
+		$("#pageFoot ul").append("<li><a href='javascript:void(0)'>"+(i+1)+"</a></li>");
+		}else{
+		$("#pageFoot ul").append("<li ><a href='javascript:void(0)'>"+(i+1)+"</a></li>");
+		}
+	}
+}
 </script>
 </body>
 </html>
