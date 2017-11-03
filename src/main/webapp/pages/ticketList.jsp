@@ -191,22 +191,18 @@
                     <div class="clearfix">
                     </div>
                 </div>
+                <div class="row mbl">
+                </div>
                 <!--END TITLE & BREADCRUMB PAGE-->
                 <!--BEGIN CONTENT-->
                 <div class="page-content">
                     <div id="tab-general">
                         <div class="row mbl">
                             <div class="col-lg-12">
-                                
-                                            <div class="col-md-12">
-                                                <div id="area-chart-spline" style="width: 100%; height: 300px; display: none;">
-                                                </div>
-                                            </div>
-                                
-                            </div>
-
-                            <div class="col-lg-12">
                             <div class="row">
+                            <div class="form-actions pal">
+                                                   
+                                                </div>
                     <div class="col-lg-12">
                         <div class="panel panel-green">
                             <div class="panel-heading">彩票列表</div>
@@ -230,7 +226,7 @@
                                 
                                 <div class="text-right" id="pageFoot" >
                                             <ul class="pagination mtm mbm">
-                                                <!-- <li><a href="#">&laquo;</a></li>
+                                              <!--  <li><a>&laquo;</a></li>
                                                 <li><a href="#">1</a></li>
                                                 <li><a href="#">2</a></li>
                                                 <li><a href="#">3</a></li>
@@ -312,13 +308,13 @@ $(function(){
 		}
 	});
 	
-	flushPageBar(1,4);
-	 $("#pageFoot ul li").click(function(){
+	sendAjax(1);
+	/*  $("#pageFoot ul li").click(function(){
 		 removeAllActiveClass();
 		var clickNum=$(this).children("a").html();
 		alert(clickNum);
 		//flushPageBar(clickNum,4);
-	});
+	}); */
 });
 
 function removeAllActiveClass(){
@@ -341,32 +337,50 @@ function flushData(row){
 	$("#tbody").append(tr);
 }
 
-function flushPageBar(currentPage,pageCount){
-	var pre="<li><a href='javascript:void(0)'>&laquo;</a></li>";
-	var next="<li><a href='javascript:void(0)'>&raquo;</a></li>";
-	if(currentPage==1){
-		pre="<li class='disabled'><a href='javascript:void(0)'>&laquo;</a></li>";
-	}
-	if(currentPage==pageCount){
-		next="<li class='disabled'><a href='javascript:void(0)'>&raquo;</a></li>";
-	}
+function flushPageBar(pageCount){
+	var pre="<li id='pre'><a href='javascript:void(0)'>&laquo;</a></li>";
+	var next="<li id='next'><a href='javascript:void(0)'>&raquo;</a></li>";
 	$("#pageFoot ul").append(pre);
-	$("#pageFoot ul").append(createPageBar(currentPage,pageCount));
+	for(var i=0;i<pageCount;i++){
+		$("#pageFoot ul").append(createOnePageBar(i+1));
+	}
 	$("#pageFoot ul").append(next);
 }
 
-function createPageBar(currentPage,pageCount){
-	for(var i=0;i<pageCount;i++){
-		if(currentPage==(i+1)){
-		$("#pageFoot ul").append("<li class='active'><a href='javascript:void(0)' onclick='getCurrentPage(this);'>"+(i+1)+"</a></li>");
-		}else{
-		$("#pageFoot ul").append("<li ><a href='javascript:void(0)' onclick='getCurrentPage(this);'>"+(i+1)+"</a></li>");
-		}
-	}
+function createOnePageBar(currentPage){
+		return "<li onclick='getCurrentPage(this);'><a href='javascript:void(0)'>"+currentPage+"</a></li>";
 }
 
-function getCurrentPage(){
-	alert("aaa");
+function getCurrentPage(obj){
+	removeAllActiveClass();
+	$(obj).addClass('active');
+	var currentPage=$(obj).children("a").html();
+	removeAllPageBar();
+	sendAjax(currentPage);
+}
+
+function removeAllPageBar(){
+	$("#pageFoot ul li").remove();
+}
+
+function flushPageBarStatus(currentPage,pageCount){
+	if(currentPage==1){
+		$("#pre").addClass('disable');
+	}
+	if(currentPage==pageCount){
+		alert(true);
+		$("#next").addClass('disable');
+	}
+	
+}
+
+/**
+ * 发送当前页的请求，获取数据
+ */
+function sendAjax(currentPage){
+	var pageCount=4;
+	flushPageBar(pageCount);
+	flushPageBarStatus(currentPage,pageCount);
 }
 </script>
 </body>
